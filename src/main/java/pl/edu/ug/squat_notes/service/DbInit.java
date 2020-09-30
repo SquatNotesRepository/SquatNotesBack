@@ -196,7 +196,7 @@ public class DbInit {
 
             String[] trainingNamesTmp = {"Push day", "Pull day", "Chest day", "Back day", "Arms day"};
             //init training with sets
-            for (int u = 0; u < 0; u++) {
+            for (int u = 0; u < 50; u++) {
                 Faker faker = new Faker();
                 user = new Account();
                 String firstName = faker.name().firstName();
@@ -213,7 +213,7 @@ public class DbInit {
                 }
                 Random rand = new Random();
                 int lvlTmp = 1;
-                if (user.getSex() == "male") {
+                if (user.getSex().equals("male")) {
                     lvlTmp = rand.nextInt(10);
                 } else {
                     lvlTmp = rand.nextInt(5);

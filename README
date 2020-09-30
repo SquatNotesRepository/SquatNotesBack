@@ -1,0 +1,10 @@
+Trzeba ściągnąć HSQL z tego linka:
+https://drive.google.com/drive/folders/1YeSiyvvKHcy_lg7Hfb_99bXws6OcigmL?usp=sharing
+Następnie uruchomić skrypt server
+Opcjonalnie uruchomić skrypt client aby zobaczyć wygenerowaną bazę po uruchomieniu projektu
+
+---------------------------------
+Projekt można zainstalować za pomocą mavena
+mvn clean install
+
+i uruchomić najlepiej w edytorze intellij przez maven komendą: spring-boot:run
