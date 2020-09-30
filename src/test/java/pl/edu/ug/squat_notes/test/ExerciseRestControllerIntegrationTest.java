@@ -2,6 +2,7 @@ package pl.edu.ug.squat_notes.test;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import pl.edu.ug.squat_notes.domain.*;
@@ -13,7 +14,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
-
 public class ExerciseRestControllerIntegrationTest extends IntegrationTest {
 
     @Autowired
@@ -22,15 +22,8 @@ public class ExerciseRestControllerIntegrationTest extends IntegrationTest {
     @Autowired
     MuscleRepository muscleRepository;
 
-    private void resetDb() {
-
-        exerciseRepository.deleteAll(exerciseRepository.findAllByAuthor(createDefaultAccount().get()));
-        exerciseRepository.flush();
-    }
-
     @Test
     public void testCreateExerciseValid() throws Exception {
-        this.resetDb();
         this.mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         Account account = createDefaultAccount().get();
         Muscle muscle = muscleRepository.findByName("Chest").get();

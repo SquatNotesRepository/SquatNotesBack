@@ -2,6 +2,7 @@ package pl.edu.ug.squat_notes.test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -9,6 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import pl.edu.ug.squat_notes.domain.Account;
@@ -33,15 +35,8 @@ public class ChatboxRestControllerIntegrationTest extends IntegrationTest {
     @Autowired
     private AccountRepository accountRepository;
 
-    @After
-    public void resetDb() {
-        chatboxRepository.deleteAll();
-        createDefaultChatbox();
-    }
-
     @Test
     public void testCreateChatboxValid() throws Exception {
-        resetDb();
         this.mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         Account account = createDefaultAccount().get();
 
@@ -164,8 +159,8 @@ public class ChatboxRestControllerIntegrationTest extends IntegrationTest {
         assertThat(messages.size()).isEqualTo(msgCount);
     }
 
-
-    private void createDefaultChatbox() {
+    @Before
+    public void createDefaultChatbox() {
         Account account = createDefaultAccount().get();
 
         ArrayList<Message> msgList = new ArrayList<>();

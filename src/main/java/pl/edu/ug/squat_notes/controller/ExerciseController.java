@@ -7,6 +7,7 @@ import pl.edu.ug.squat_notes.domain.Exercise;
 import pl.edu.ug.squat_notes.repository.ExerciseRepository;
 import pl.edu.ug.squat_notes.service.ExerciseService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)

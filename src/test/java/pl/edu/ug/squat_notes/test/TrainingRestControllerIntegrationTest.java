@@ -2,6 +2,7 @@ package pl.edu.ug.squat_notes.test;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import pl.edu.ug.squat_notes.domain.*;
@@ -21,10 +22,6 @@ public class TrainingRestControllerIntegrationTest extends IntegrationTest {
 
     @Autowired
     ExerciseRepository exerciseRepository;
-
-    private void resetDb() {
-        trainingRepository.deleteAll();
-    }
 
     @Test
     public void testCreateTrainingValid() throws Exception {

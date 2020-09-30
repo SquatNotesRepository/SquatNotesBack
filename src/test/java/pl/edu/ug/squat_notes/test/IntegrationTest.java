@@ -3,9 +3,11 @@ package pl.edu.ug.squat_notes.test;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -20,6 +22,7 @@ import pl.edu.ug.squat_notes.domain.Chatbox;
 import pl.edu.ug.squat_notes.domain.Exercise;
 import pl.edu.ug.squat_notes.repository.AccountRepository;
 import pl.edu.ug.squat_notes.repository.ChatboxRepository;
+import pl.edu.ug.squat_notes.service.DbInit;
 
 import java.util.Date;
 import java.util.Optional;
@@ -44,6 +47,14 @@ abstract public class IntegrationTest {
 
     @Autowired
     WebApplicationContext webApplicationContext;
+
+    @Autowired
+    DbInit dbInit;
+
+    @Before
+    public void resetDb() {
+        dbInit.postConstruct();
+    }
 
 
     protected void setUp() {
